@@ -1,0 +1,33 @@
+[
+  {
+    "id": "feat-user-login",
+    "priority": 1,
+    "area": "auth",
+    "title": "User login with email and password",
+    "user_visible_behavior": "User visits /login, submits correct credentials, gets redirected to /dashboard.",
+    "status": "not_started",
+    "verification": [
+      "Launch dev server",
+      "Navigate to /login and submit test credentials",
+      "Verify sessionStorage/cookies contain JWT token"
+    ],
+    "evidence": [],
+    "notes": "Depends on db-migration task completion"
+  },
+  {
+    "id": "feat-db-migration",
+    "priority": 0,
+    "area": "database",
+    "title": "Create users table migration",
+    "user_visible_behavior": "Database schema updated with users table containing id, email, password_hash, and timestamps.",
+    "status": "passing",
+    "verification": [
+      "Run prisma migrate dev",
+      "Verify tables are created in the database using DB client"
+    ],
+    "evidence": [
+      "Migration applied successfully: 20260614_create_users"
+    ],
+    "notes": "Required blocker for login feature"
+  }
+]
