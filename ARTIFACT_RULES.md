@@ -1,93 +1,55 @@
 # Artifact Rules
 
 ## PDF Handling
-
-- For scanned PDFs: `pdfinfo` -> one `pdftotext -layout` check -> if empty, render with `pdftoppm` to `tmp/pdfs/` and inspect PNGs with `view_image` original detail.
+- For scanned PDFs: `pdfinfo` -> one `pdftotext -layout` check -> if empty, render with `pdfimages` or `pdftoppm` to a temporary directory and inspect page details.
 - Keep a tiny inventory: page count, text-extraction result, and what the pages contain.
-- Stay local-first; no internet OCR/upload unless explicitly requested.
-- After editing or creating a PDF that Masih needs to inspect, first verify locally by rendering a page/image.
-- Then open the PDF for Masih with `source ~/.bash_aliases; op <absolute-pdf-path>`.
-- If that silently fails, launch the document viewer directly with `setsid evince <absolute-pdf-path> >/tmp/<task>-evince.log 2>&1 &` and check `ps`/the log.
+- Stay local-first; no remote OCR or uploads unless explicitly requested.
+- After editing or creating a PDF, verify locally by rendering a page/image.
+- Open the PDF for review with standard system commands (e.g., `evince <absolute-pdf-path> &`).
 
 ## HTML UI Verifiability
-
 - When creating reports, prototypes, dashboards, visual research artifacts, or demos, make the result visible in HTML.
-- The HTML should show the actual artifact: text, formulas, tables, charts, controls, outputs, and relevant state/results.
-- After creating or meaningfully editing a user-facing HTML report/artifact, open it for Masih unless he explicitly says not to. A screenshot or headless render is verification, not a substitute for opening the artifact.
-- Open HTML files in Chromium. Prefer a local HTTP server for site folders, especially when assets/scripts/maps exist: `setsid python3 -m http.server <port> --directory <site-dir> >/tmp/<task>-server.log 2>&1 &`, then open `http://127.0.0.1:<port>/...` in Chromium. Use `file://` only for simple standalone HTML. If Chromium loads indefinitely, switch from `file://` to local HTTP before claiming it is open.
-- Browser automation and screenshots are token/compute expensive. Prefer cheaper local checks unless the UI/formulas/charts are newly created or materially changed; in those cases do one visual verification pass before opening for Masih.
-- If there are multiple design/options, make them switchable in the HTML rather than only describing them in chat.
-- Keep the source file too when useful, such as Markdown, notebook, Python, or JS.
+- The HTML should show the actual artifact: text, formulas, tables, charts, controls, and relevant results.
+- After creating or editing an HTML report, open it for visual validation.
+- Open HTML files in a browser. For directories with assets/scripts/maps, launch a local HTTP server: `python3 -m http.server <port> --directory <site-dir>`, then open `http://127.0.0.1:<port>`. Use `file://` only for simple standalone HTML.
+- Browser automation and screenshots are compute expensive. Prefer cheaper local checks unless UI layouts or charts are newly created.
 
-## HTML Slide/PDF Layout Lessons
-
-- For browser-printed HTML slides, do not rely on `.active` styles for PDF output. Print mode often forces every `.slide` to `display:flex`; put layout-critical defaults such as `flex-direction`, `justify-content`, and `gap` on the base `.slide` class.
-- Verify spatial layout by rendering the generated PDF pages, not by reading extracted PDF text. Use spot checks for the most layout-sensitive pages and a contact sheet for the whole deck.
-- In RTL slide decks with image/text split layouts, CSS grid can inherit `direction: rtl` and visually reverse columns. Set the split container to `direction:ltr` for physical left-to-right grid placement, then set the text area back to `direction:rtl`.
-- For mixed Persian/English slide text, prefer Persian-led phrasing and isolate short English terms only when needed; long English-led bullets often render with broken order in PDF.
+## HTML Slide Layout Lessons
+- For printed HTML slides, do not rely on dynamic active styles. Ensure layout defaults (like flex direction, justify-content, gap) are explicitly set.
+- Verify spatial layout by rendering pages as images or PDFs. Spot-check the most layout-sensitive pages.
+- In right-to-left (RTL) slide decks, set the main split container to `direction: ltr` for grid placement, and set individual text blocks to `direction: rtl` to preserve correct word ordering.
 
 ## HTML Formula Rendering Harness
-
 Use this whenever an HTML report/page needs mathematical formulas.
-
-- Do not put raw LaTeX delimiters such as `\(...\)`, `\[...\]`, or `$$...$$` directly into handwritten HTML and assume the browser will render them. Browsers show those as text unless a renderer or MathML is present.
-- For handwritten HTML, prefer native MathML directly in the file. This is the most reliable local-first method because Chromium/Firefox render it without internet or extra JavaScript. Use a styled wrapper such as:
-
-```html
-<div class="math-display">
-  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-    <mrow>
-      <msub><mi>s</mi><mi>k</mi></msub>
-      <mo>=</mo>
-      <mi>T</mi><mo>(</mo><msub><mi>r</mi><mi>k</mi></msub><mo>)</mo>
-      <mo>=</mo>
-      <munderover>
-        <mo>&#x2211;</mo>
-        <mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow>
-        <mi>k</mi>
-      </munderover>
-      <msub><mi>p</mi><mi>r</mi></msub>
-      <mo>(</mo><msub><mi>r</mi><mi>j</mi></msub><mo>)</mo>
-    </mrow>
-  </math>
-</div>
-```
-
+- Do not put raw LaTeX delimiters (like `\(...\)`, `\[...\]`) directly into HTML.
+- For handwritten HTML, prefer native MathML. It is standard and renders locally in modern browsers without external dependencies. Example:
+  ```html
+  <div class="math-display">
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+      <mrow>
+        <msub><mi>s</mi><mi>k</mi></msub>
+        <mo>=</mo>
+        <mi>T</mi><mo>(</mo><msub><mi>r</mi><mi>k</mi></msub><mo>)</mo>
+      </mrow>
+    </math>
+  </div>
+  ```
 - Recommended CSS:
-
-```css
-.math-display {
-  direction: ltr;
-  text-align: center;
-  background: #fbfcfe;
-  border: 1px solid #d9e0e8;
-  border-radius: 6px;
-  padding: 12px 14px;
-  margin: 10px 0;
-  overflow: auto;
-}
-.math-display math { font-size: 1.18rem; }
-```
-
-- If starting from Markdown instead of handwritten HTML, use Pandoc to generate the same kind of browser-renderable MathML:
-
-```bash
-pandoc input.md -s --mathml -c style.css -o output.html
-```
-
-- Verify formulas became real MathML and that raw TeX delimiters are not left behind:
-
-```bash
-grep -n '<math' output.html | head
-grep -n '\\[\\|\\]\\|\\$\\$' output.html | head
-```
-
-- If MathML is too slow to author for a large document, use Pandoc Markdown-to-MathML rather than raw TeX in HTML. A real renderer such as MathJax/KaTeX is acceptable only when its script/CSS is included and verified; avoid CDN/network renderers unless internet use is acceptable for the task.
-- A plain-text formula block is acceptable only when the user does not need typeset math; label ambiguous notation in words, e.g. `G_inverse(s_k)` means inverse CDF, not exponentiation.
-- Verification before delivery:
-  - Render/open the HTML in Chromium or the target viewer.
-  - Confirm formulas visually render as math, not literal TeX delimiters.
-  - For reports with formulas, keep the source `.md` alongside generated `.html` when practical.
-- Known working references:
-  - `/home/masih/Desktop/emt/answers.html`: handwritten native MathML inside `.math-display`.
-  - `/home/masih/Desktop/u/pr/sensor_fault_research/REPORT.md` -> `REPORT.html`: Markdown `$$...$$` converted by Pandoc into `<math ...>` MathML.
+  ```css
+  .math-display {
+    direction: ltr;
+    text-align: center;
+    background: #fbfcfe;
+    border: 1px solid #d9e0e8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 10px 0;
+    overflow: auto;
+  }
+  .math-display math { font-size: 1.18rem; }
+  ```
+- For Markdown sources, use Pandoc to compile to MathML:
+  ```bash
+  pandoc input.md -s --mathml -c style.css -o output.html
+  ```
+- Verify that LaTeX delimiters are not left uncompiled in the final output.
