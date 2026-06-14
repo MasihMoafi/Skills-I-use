@@ -1,92 +1,40 @@
-# 🛡️ Harness Engineering: Grounding AI Coding Agents
+# 🛡️ Harnesses I Use: Scaffolding AI Coding Agents
 
-> **"A million lines of code, 1,500 pull requests, and 0 lines written by human hands."**
-> How to design constraints, spec intent, and build feedback loops that allow LLM coding agents (like Claude Code, Codex, Devin, or OpenClaw) to do reliable, autonomous work.
+This repository contains the exact, battle-tested Markdown-based context rules, guidelines, and guardrails I use to steer and constrain coding AI agents (such as Claude Code, Codex, or OpenClaw) on my local Linux system.
 
----
-
-## 🧐 The Problem: Why Agents Fail
-
-When you drop an AI coding agent into a raw repository, it fails in predictable ways:
-
-1. **Context Window Pollution**: The agent gets lost in its own chat history or reads irrelevant files, losing track of the core task constraints.
-2. **Agent Amnesia**: Between runs or CLI sessions, the agent forgets what was previously verified, what failed, and what to do next.
-3. **No Verification Loop**: The agent writes code, claims it works, but never runs the test suite or dev server, leading to broken builds.
-4. **Task/Scope Drift**: A small bug-fix refactors half the codebase because the agent lacked boundary rules.
-
----
-
-## 🛠️ The Cure: Harness Engineering
-
-An **Agent Harness** is a thin, structured, repository-local control layer that steers, constraints, and verifies the agent's work. Instead of feeding your agent a 1,000-page instruction manual, you provide a **table of contents and mechanical verification tools**.
-
-This repository contains the exact templates and bootstrap scripts used to engineer reliable agent workflows.
+Instead of building complex, unpredictable multi-agent frameworks, this repository advocates for **context-level Harness Engineering**: using structured local Markdown rules to control the agent's behavior, prevent context window pollution, and ensure reproducibility.
 
 ---
 
 ## 📂 Repository Contents
 
-```bash
-├── README.md               # You are here
-├── THE_ESSAY.md            # Lessons from shipping a 1M-LoC codebase with 0 human lines of code
-├── setup-harness.sh        # One-click script to install the harness into any project
-└── templates/              # Core harness templates
-    ├── AGENTS.md           # Root rules and entry point for agents
-    ├── init.sh             # Startup and baseline verification script
-    ├── progress.md         # Ephemeral session progress log
-    ├── feature_list.json   # Machine-readable task queue
-    ├── session-handoff.md  # State transfer note for long/risky runs
-    ├── clean-state.md      # Exit-criteria checklist for git sanity
-    ├── evaluator-rubric.md # AI-powered output quality scorecard
-    └── quality-doc.md      # System/layer grades over time
-```
+Each file represents a critical boundary layer for the agent:
+
+*   **[`AGENTS.md`](AGENTS.md)**: The global router and primary entry point. Every AI agent reads this first to understand the Priority Kernel (reply constraints, English defaults, local-first behavior).
+*   **[`CODEX_CODING_GUIDELINES.md`](CODEX_CODING_GUIDELINES.md)**: Surgical coding rules adapted from Andrej Karpathy's coding practices. Enforces minimal changes, style-matching, and goal-driven execution.
+*   **[`TERMINAL_AND_GIT_RULES.md`](TERMINAL_AND_GIT_RULES.md)**: Safe terminal navigation, SOCKS/HTTP proxy configuration, explicit git scoping (e.g., *never* using `git add -A`), and change safety (using Ubuntu `pkexec` for root commands instead of raw CLI password prompts).
+*   **[`SESSION_HANDOFF_RULES.md`](SESSION_HANDOFF_RULES.md)**: Guidelines for context awareness and continuity. Defines how state should be captured and transferred between sessions.
+*   **[`ARTIFACT_RULES.md`](ARTIFACT_RULES.md)**: Rules for generating verified visual and math outputs, including local HTML layout verification, MathML for formula rendering, and PDF inspection.
+*   **[`abbn.md`](abbn.md)**: A dictionary of standard abbreviations (e.g., `ctu` = continue, `fmy` = familiarize, `ver` = verify) to save token count and maintain short, high-efficiency communication.
 
 ---
 
-## 🚀 Quick Start: Bootstrapping a Harness
+## 🧠 Philosophy: Bounded Autonomy
 
-You can instantly inject this harness into your repository. Clone this repo or run our installer in your target project root:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/MasihMoafi/harnesses-I-use/main/setup-harness.sh | bash
-```
-
-This will create an `AGENTS.md` and standard templates under `docs/agents/` or your root folder.
+AI agents perform best when constrained. These rules prevent:
+1.  **Scope Drift**: Agents refactoring unrelated modules when asked for a simple bug fix.
+2.  **Process Theater**: Agents generating excessive placeholder files and fake metrics to "prove" progress.
+3.  **Local Environment Corruption**: Agents making destructive system changes or downloads without explicit user authorization.
 
 ---
 
-## 🧠 Harness Component Breakdown
+## 🔗 References & Inspiration
 
-### 1. `AGENTS.md` / `CLAUDE.md`
-The entry point. When an agent boots up, it reads this file first. It directs the agent to locate the progress files, follow specific scoping rules, and run the verification command before declaring completion.
-*👉 [Template](templates/AGENTS.md)*
-
-### 2. `init.sh`
-A self-contained script that installs dependencies, runs tests to verify the baseline, and prints startup hints. If the baseline fails, the agent must fix it before writing new features.
-*👉 [Template](templates/init.sh)*
-
-### 3. `progress.md`
-The agent's memory. It records the current verified state, active blockers, test logs, and the next best actions.
-*👉 [Template](templates/progress.md)*
-
-### 4. `feature_list.json`
-A structured queue. Enforces that the agent only works on **one feature at a time**, transitioning statuses dynamically (`not_started` ➔ `in_progress` ➔ `passing`).
-*👉 [Template](templates/feature_list.json)*
-
-### 5. `evaluator-rubric.md` & `quality-doc.md`
-Mechanical scorecards. The rubric scores individual session outputs (e.g., correctness, scope discipline, test evidence) while the quality document tracks codebase architecture grades over time (A-D).
-*👉 [Templates](templates/)*
+*   **Andrej Karpathy's** open-source code templates (like [micrograd](https://github.com/karpathy/micrograd) and [makemore](https://github.com/karpathy/makemore)), focusing on mathematical baselines and minimalist, inspectable scripts.
+*   My personal projects, experiments, and research: **[masihmoafi.tech](https://masihmoafi.tech)**
 
 ---
 
-## 📖 Deep Dive: The Experiment
+## 🤝 Contributing
 
-Read **[THE_ESSAY.md](THE_ESSAY.md)** to see the full write-up on how we ran a 5-month experiment: shipping production software daily with 0 lines of human-written code, managing agent legibility, local observability stacks, and layer-enforcing linters.
-
----
-
-## 🤝 Contributing & Feedback
-
-Harnesses should be minimal. If you find a template that has stale instructions or can be simplified, open a PR!
-
-*Created by [Masih Moafi](https://github.com/MasihMoafi)*
+If you use or adapt these rules for your own local agents, feel free to open a PR or drop your own agent configurations here. Let's build cleaner agent environments.
