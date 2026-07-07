@@ -5,8 +5,6 @@ type: AI Constraints -> System Layer
 
 # 1. Introduction
 
-> An extension of its creator. "You put an agent into an Elpis, and it becomes Elpis; Use Elpis my friend."
-
 This repository provides exact, battle-tested Markdown context rules to steer and constrain coding AI agents locally. It rejects complex multi-agent frameworks in favor of structured harnesses that enforce strict boundaries, prevent context pollution, and guarantee deterministic execution.
 
 # 2. Mechanics & Technical Spec
