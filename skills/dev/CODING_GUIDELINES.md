@@ -1,6 +1,11 @@
-# Codex Coding Session Guidelines
+---
+name: coding-sessions
+description: Use these rules for non-trivial coding sessions, bug fixes, refactors, and code reviews. For tiny one-line changes, apply judgment without ceremony.
+---
 
-Source note: adapted from a user-provided Karpathy-inspired coding-agent guideline that claimed improved coding accuracy to 94%. Treat that number as an unverified claim; keep the useful behavior rules.
+# Coding Session Guidelines
+
+Source note: adapted from a Karpathy-inspired coding-agent guideline that claimed improved coding accuracy. Treat that number as an unverified claim; keep the useful behavior rules.
 
 Use these rules for non-trivial coding sessions, bug fixes, refactors, and code reviews. For tiny one-line changes, apply judgment without ceremony.
 
@@ -59,3 +64,4 @@ These rules are working when:
 - Implementations are boring, small, and readable.
 - Tests or local checks prove the behavior instead of relying on confidence.
 - Review notes call out unrelated risks without silently expanding the scope.
+
