@@ -1,1 +1,0 @@
-https://walkinglabs.github.io/learn-harness-engineering/en/skills/
