@@ -1,6 +1,6 @@
 ---
 name: harness-eng
-description: Use when designing, evaluating, or simplifying an agent project harness: AGENTS.md/CLAUDE.md rules, startup scripts, progress logs, feature trackers, handoffs, evaluator rubrics, quality documents, repo-local knowledge maps, and mechanical guardrails for coding agents. Especially useful when converting raw agent-workflow notes into a concise, verifiable project control layer.
+description: "Use when designing, evaluating, or simplifying an agent project harness: AGENTS.md/CLAUDE.md rules, startup scripts, progress logs, feature trackers, handoffs, evaluator rubrics, quality documents, repo-local knowledge maps, and mechanical guardrails for coding agents. Especially useful when converting raw agent-workflow notes into a concise, verifiable project control layer."
 ---
 
 # Harness Engineering
@@ -115,8 +115,6 @@ For a new or changed harness, check:
 
 If unsure whether a component is still needed, take a quality snapshot, remove or bypass one component, run the benchmark/task suite, compare results, and keep the simpler version only if quality does not drop.
 
-## Source notes in this folder
+## Further reading
 
-- `harness-eng.md`: broad principles from a Codex-driven product workflow: repo-local knowledge, agent-legible architecture, mechanical constraints, feedback loops, and garbage collection.
-- `harness-eng-temp.md`: practical artifact guide for startup scripts, progress logs, feature trackers, handoffs, evaluator rubrics, and quality documents.
-- `harness-creator.md`: upstream Walking Labs reference URL.
+Adapted in part from the "Learn Harness Engineering" material at https://walkinglabs.github.io/learn-harness-engineering/en/skills/.

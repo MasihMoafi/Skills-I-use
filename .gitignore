@@ -1,0 +1,8 @@
+# Personal — machine-specific config and personal workflows, not meant for the public repo
+/dev/
+/word-farsi-docx/
+/web-dev/
+
+# Third-party — authored by OpenAI (openai/skills), Apache-2.0, not mine to redistribute under this repo's MIT license
+/skill-creator/
+/skill-installer/

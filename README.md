@@ -1,29 +1,38 @@
 # 🛠️ Skills I Use
 
 ## Intro - What is it?
-This repository is a curated collection of structured, executable AI agent skills designed for coding assistants (such as Claude Code, Codex, and Google Antigravity). It replaces passive prompting with versioned, procedural markdown configurations to enforce safety, context hygiene, and engineering discipline.
+A curated collection of structured, executable AI agent skills for coding assistants (Claude Code, Codex, and other SKILL.md-compatible agents). Each skill replaces passive prompting with a versioned, procedural markdown file the agent loads on demand.
 
 ## How Does it Work? Technical Spec.
-Each skill in the `skills/` directory is structured as a standalone folder containing a `SKILL.md` file with standardized YAML frontmatter (`name` and `description`). Coding agents auto-discover these files to extend their capabilities dynamically:
-- **`first-principles`**: Evaluates problem trajectory, questions requirements, deletes bloated code, refactors, benchmarks speed, and automates pipelines sequentially.
-- **`harness-eng`**: Configures project-specific boundaries, progress logs, and feature lists.
-- **`doc-harness`**: Enforces brutalist, facts-only documentation structures without marketing fluff.
-- **`experiment-workflow`**: Standardizes variable-isolated testing and 3x10 query stress-testing.
-- **`word-farsi-docx`**: Rebuilds correct RTL alignment and B Nazanin font formatting for Persian Word documents.
-- **`gitlab-workflow`**: Ingests branch protection rules, commit formatting, and MR guidelines.
+Each skill is a standalone folder containing a `SKILL.md` file with YAML frontmatter (`name` and `description`). Agents match the `description` against the current task and load the skill only when relevant:
+
+- **`clean-up`**: Safe, consent-gated workflow for auditing and reclaiming disk space (package caches, Docker, temp files).
+- **`doc-style`**: Brutalist, evidence-first documentation and launch-writing standard — no unproven claims, no marketing fluff.
+- **`experiment-workflow`**: Variable-isolated testing workflow with structured hypothesis, source material, and query-based stress-testing.
+- **`first-principles`**: A 5-step engineering method (question → delete → simplify → accelerate → automate), adapted from Elon Musk's "algorithm."
+- **`gitlab`**: Branch-protection and MR workflow guidelines for agents working on GitLab-hosted repos.
+- **`harness-eng`**: Guidance for designing an agent project harness (AGENTS.md/CLAUDE.md rules, progress logs, feature trackers, evaluator rubrics). Adapted in part from [Walking Labs' Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/en/skills/).
+- **`pdf`**: Visual-first workflow for reading, creating, and validating PDFs (Poppler rendering + reportlab/pdfplumber/pypdf).
+- **`training-nn`**: A neural-net training recipe and common-pitfalls checklist, adapted from Andrej Karpathy's ["A Recipe for Training Neural Networks"](https://karpathy.github.io/2019/04/25/recipe/).
+
+Not every skill in this repo is public — personal, machine-specific config and third-party-authored skills are kept out via `.gitignore` (see below).
 
 To install a skill locally:
 ```bash
 npx skills add MasihMoafi/Skills-I-use --skill <skill-name>
 ```
 
+## What's Not in Here
+- **Personal/machine-specific**: a personal agent-operating kernel, a personal document workflow, and a personal site's design system are excluded — they're tied to one person's machine, paths, and taste, not reusable guidance.
+- **Third-party-authored**: skills pulled from `openai/skills` (Apache-2.0) are kept locally for personal use but not redistributed here under this repo's MIT license.
+
 ## What Sets This Project Apart?
-- **Executable Guidelines:** Moves away from passive documentation into structured prompt-injection rules that AI agents actively read and enforce.
-- **Context-Size Aware:** Engineered with a three-level progressive disclosure design to minimize token consumption and protect the context window.
+- **Executable Guidelines:** Structured, procedural instructions an agent actively follows, not passive documentation.
+- **Scoped:** Each skill covers one job, triggers on its own description, and stays out of context until relevant.
 
 ## Evals and test Series
-- Validated locally on Ubuntu using the `quick_validate.py` script to ensure YAML metadata, schema names, and resource structures are agent-legible before deployment.
+- Each `SKILL.md`'s YAML frontmatter (name matches its folder, required `name`/`description` fields, description length) is checked with a local schema validator before anything is committed.
 
 ## Future Dev
-- Add further automated checks for checking skill compatibility across multiple agent runtimes.
-- Expand the repository with domain-specific skills for ML training and CUDA optimizations.
+- Add automated checks for skill compatibility across multiple agent runtimes.
+- Expand with domain-specific skills for ML training and CUDA optimizations.

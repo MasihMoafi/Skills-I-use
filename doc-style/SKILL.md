@@ -1,9 +1,9 @@
 ---
-name: doc-harness
-description: Use when writing project documentation such as a README.md, SKILL.md, specifications, or launch material.
+name: doc-style
+description: Enforces a brutalist, evidence-first documentation and launch-writing standard — structure, tone, and distribution outputs, with no unproven claims. Use when writing or reviewing a README.md, SKILL.md, specification, or launch material.
 ---
 
-# Documentation Harness
+# Documentation Style
 
 ## Naming structure
 
