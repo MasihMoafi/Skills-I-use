@@ -1,4 +1,4 @@
-# 🛠️ Skills I Use
+# 🛠️ Skills
 
 ## Intro - What is it?
 A curated collection of structured, executable AI agent skills for coding assistants (Claude Code, Codex, and other SKILL.md-compatible agents). Each skill replaces passive prompting with a versioned, procedural markdown file the agent loads on demand.
@@ -19,7 +19,7 @@ Not every skill in this repo is public — personal, machine-specific config and
 
 To install a skill locally:
 ```bash
-npx skills add MasihMoafi/Skills-I-use --skill <skill-name>
+npx skills add MasihMoafi/skills --skill <skill-name>
 ```
 
 ## What's Not in Here
