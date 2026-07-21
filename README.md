@@ -22,10 +22,6 @@ To install a skill locally:
 npx skills add MasihMoafi/skills --skill <skill-name>
 ```
 
-## What's Not in Here
-- **Personal/machine-specific**: a personal agent-operating kernel, a personal document workflow, and a personal site's design system are excluded — they're tied to one person's machine, paths, and taste, not reusable guidance.
-- **Third-party-authored**: skills pulled from `openai/skills` (Apache-2.0) are kept locally for personal use but not redistributed here under this repo's MIT license.
-
 ## What Sets This Project Apart?
 - **Executable Guidelines:** Structured, procedural instructions an agent actively follows, not passive documentation.
 - **Scoped:** Each skill covers one job, triggers on its own description, and stays out of context until relevant.
