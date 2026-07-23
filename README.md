@@ -1,34 +1,116 @@
-# 🛠️ Skills
+---
+name: skills
+type: reusable AI-agent workflows for developers using SKILL.md-compatible assistants
+---
 
-## Intro - What is it?
-A curated collection of structured, executable AI agent skills for coding assistants (Claude Code, Codex, and other SKILL.md-compatible agents). Each skill replaces passive prompting with a versioned, procedural markdown file the agent loads on demand.
+# Skills
 
-## How Does it Work? Technical Spec.
-Each skill is a standalone folder containing a `SKILL.md` file with YAML frontmatter (`name` and `description`). Agents match the `description` against the current task and load the skill only when relevant:
+**Do not re-explain the same working method to an agent every session.**
 
-- **`clean-up`**: Safe, consent-gated workflow for auditing and reclaiming disk space (package caches, Docker, temp files).
-- **`doc-style`**: Brutalist, evidence-first documentation and launch-writing standard — no unproven claims, no marketing fluff.
-- **`experiment-workflow`**: Variable-isolated testing workflow with structured hypothesis, source material, and query-based stress-testing.
-- **`first-principles`**: A 5-step engineering method (question → delete → simplify → accelerate → automate), adapted from Elon Musk's "algorithm."
-- **`gitlab`**: Branch-protection and MR workflow guidelines for agents working on GitLab-hosted repos.
-- **`harness-eng`**: Guidance for designing an agent project harness (AGENTS.md/CLAUDE.md rules, progress logs, feature trackers, evaluator rubrics). Adapted in part from [Walking Labs' Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/en/skills/).
-- **`pdf`**: Visual-first workflow for reading, creating, and validating PDFs (Poppler rendering + reportlab/pdfplumber/pypdf).
-- **`training-nn`**: A neural-net training recipe and common-pitfalls checklist, adapted from Andrej Karpathy's ["A Recipe for Training Neural Networks"](https://karpathy.github.io/2019/04/25/recipe/).
+This repository contains reusable `SKILL.md` workflows for coding assistants such as Codex, Claude Code, and other skill-compatible agents. Each skill is a small, versioned procedure with its own trigger description, constraints, and execution rules.
 
-Not every skill in this repo is public — personal, machine-specific config and third-party-authored skills are kept out via `.gitignore` (see below).
+## Quick start
 
-To install a skill locally:
+Install one skill:
+
 ```bash
-npx skills add MasihMoafi/skills --skill <skill-name>
+npx skills add MasihMoafi/skills --skill doc-style
 ```
 
-## What Sets This Project Apart?
-- **Executable Guidelines:** Structured, procedural instructions an agent actively follows, not passive documentation.
-- **Scoped:** Each skill covers one job, triggers on its own description, and stays out of context until relevant.
+Or replace `doc-style` with another folder name from the list below.
 
-## Evals and test Series
-- Each `SKILL.md`'s YAML frontmatter (name matches its folder, required `name`/`description` fields, description length) is checked with a local schema validator before anything is committed.
+Inspect what you are installing before using it:
 
-## Future Dev
-- Add automated checks for skill compatibility across multiple agent runtimes.
-- Expand with domain-specific skills for ML training and CUDA optimizations.
+```bash
+cat doc-style/SKILL.md
+```
+
+Expected result: the selected skill is available to the compatible agent/runtime you install it into, and its `name`/`description` frontmatter tells that runtime when the workflow is relevant.
+
+## The problem
+
+Prompts for recurring engineering work tend to drift: the same repository-cleanup rules, experiment discipline, documentation standard, or product-design process gets rewritten differently each time.
+
+A skill turns that repeated instruction into a repository-owned procedure that can be reviewed, versioned, and reused.
+
+## Available skills
+
+- **[`clean-up`](clean-up/SKILL.md)** — consent-gated disk-space audit and cleanup workflow.
+- **[`doc-style`](doc-style/SKILL.md)** — evidence-first README, specification, and launch-writing standard.
+- **[`experiment-workflow`](experiment-workflow/SKILL.md)** — variable-isolated experiment workflow with explicit hypotheses and stress tests.
+- **[`first-principles`](first-principles/SKILL.md)** — engineering simplification workflow: question → delete → simplify → accelerate → automate.
+- **[`gitlab`](gitlab/SKILL.md)** — branch-protection and merge-request workflow guidance for GitLab repositories.
+- **[`harness-eng`](harness-eng/SKILL.md)** — agent-project harness design: rules, progress state, feature tracking, and evaluator contracts.
+- **[`pdf`](pdf/SKILL.md)** — visual-first workflow for reading, creating, and validating PDFs.
+- **[`product-design`](product-design/SKILL.md)** — product architecture, user-flow design, stack selection, and frontend-first execution planning.
+- **[`training-nn`](training-nn/SKILL.md)** — neural-network training recipe and common failure-mode checklist.
+
+Personal machine configuration and third-party-authored skills are intentionally excluded from the public repository.
+
+## How it works
+
+Each public skill lives in its own folder:
+
+```text
+skill-name/
+└── SKILL.md
+```
+
+The file begins with YAML frontmatter:
+
+```yaml
+---
+name: skill-name
+description: when the agent should use this workflow
+---
+```
+
+The rest of the file defines the procedure, output contract, and guardrails. The repository is deliberately plain Markdown so every instruction is inspectable before it is installed.
+
+## Current state
+
+### Implemented and available
+
+The skills listed above are present as standalone `SKILL.md` workflows and can be installed individually through the `skills` CLI.
+
+### Implemented but still under acceptance
+
+Cross-runtime behavior is not yet continuously verified. A skill that parses correctly is not automatically proven to behave identically in every agent runtime.
+
+### Planned
+
+- Automated structural validation for every public `SKILL.md`.
+- Compatibility checks across multiple supported agent runtimes.
+- More domain-specific engineering workflows when there is a repeated real use case.
+
+### Intentionally unsupported
+
+- Personal machine-specific configuration.
+- Private skills.
+- Third-party skills copied into this repository without a clear reason to redistribute them.
+
+## What sets this repository apart
+
+These are design choices rather than novelty claims:
+
+- **Procedures instead of prompt snippets.** Each skill describes a repeatable workflow, not a one-off answer style.
+- **One job per skill.** A skill is scoped tightly enough to stay out of unrelated tasks.
+- **Inspectable source.** The behavior contract is plain Markdown in the repository.
+- **Versionable working methods.** Changes to how an agent should work can be reviewed like code.
+
+## Evals and test series
+
+There is currently no repository-level CI proving cross-runtime compatibility.
+
+The smallest useful verification is:
+
+1. install one skill into a supported runtime;
+2. give the agent a task that clearly matches the skill description;
+3. verify that the runtime discovers the skill;
+4. check the agent's output against the procedure and guardrails in that `SKILL.md`.
+
+Automating this check is planned work.
+
+## Future development
+
+The next useful step is not adding many more skills. It is making the existing set easier to discover, install, and verify across runtimes.
