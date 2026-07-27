@@ -76,13 +76,10 @@ Use internal linking to distribute reader traffic and keep the core README clean
 
 Separate these explicitly:
 
-implemented and verified;
-
-implemented but still under acceptance;
-
-planned;
-
-intentionally unsupported.
+- implemented and verified;
+- implemented but still under acceptance;
+- planned;
+- intentionally unsupported.
 
 Link to the source of truth for status.
 

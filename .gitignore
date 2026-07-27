@@ -4,6 +4,10 @@
 
 # Not a skill yet — reference notes with no SKILL.md, so nothing can install them
 /web-dev/
+/magic-prompt.md
+
+# Third-party — substantially OpenAI's Codex best-practices guide, kept for local reference
+/best-practices.md
 
 # Third-party — authored by OpenAI (openai/skills), Apache-2.0, not mine to redistribute under this repo's MIT license
 /skill-creator/
