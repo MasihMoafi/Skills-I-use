@@ -11,6 +11,14 @@ type: reusable AI-agent workflows for developers using SKILL.md-compatible assis
 
 **Do not re-explain the same working method to an agent every session.**
 
+[![Skills](https://img.shields.io/badge/skills-15-orange?style=flat-square)](#available-skills)
+[![Install](https://img.shields.io/badge/install-npx%20skills-brightgreen?style=flat-square)](#quick-start)
+[![Format](https://img.shields.io/badge/format-SKILL.md-blue?style=flat-square)](#how-it-works)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/MasihMoafi/skills?style=flat-square&color=lightgrey)](https://github.com/MasihMoafi/skills/commits/main)
+
+[Install](#quick-start) • [Skills](#available-skills) • [How it works](#how-it-works) • [State](#current-state)
+
 </div>
 
 This repository contains reusable `SKILL.md` workflows for coding assistants such as Codex, Claude Code, and other skill-compatible agents. Each skill is a small, versioned procedure with its own trigger description, constraints, and execution rules.
