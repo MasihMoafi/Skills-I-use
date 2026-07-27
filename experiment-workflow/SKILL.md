@@ -15,7 +15,7 @@ A comprehensive, canonical testing workflow—for any system where precision is 
 Every experiment logged or run using this workflow MUST include the following components:
 
 ## A. Objectives (The Questions We Want Answers To)
-Before running tests, user must clearly define the exact hypothesis or goal; the questions he wants answers to, and whether the experiments will produce such answers?
+Before running tests, the user must clearly define the exact hypothesis or goal, the questions they want answered, and whether the experiments can actually answer them.
 Test no 1: This is an example of one of the RAG experiments in which we aimed to test each file separately.
 - Does the system handle academic documents better than narrative books?
 - At what document length does context retrieval begin to degrade?

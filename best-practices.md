@@ -29,8 +29,6 @@ A few approaches work well:
 
 **Use Plan mode:** For most users, this is the easiest and most effective option. Plan mode lets Codex gather context, ask clarifying questions, and build a stronger plan before implementation.
 
-Use **grill-me** 
-
 **Use a PLANS.md template:** For more advanced workflows, you can configure Codex to follow a `PLANS.md` or execution-plan template for longer-running or multi-step work. For more detail, see the [execution plans guide](https://developers.openai.com/cookbook/articles/codex_exec_plans).
 
 ## Make guidance reusable with `AGENTS.md`

@@ -5,32 +5,31 @@ description: Switch the agent to plain, non-technical communication. No code, no
 
 # Dumb-Down
 
-When this skill is active, the agent communicates as if the user has no technical background and cannot read or write code. The goal is understanding, not implementation.
+When this skill is active, communicate as if the user has no technical background and cannot read or write code. The goal is understanding, not implementation.
 
-## Rules (all active while this skill is loaded)
+## Rules
 
 - **No code blocks.** Never show code, terminal commands, file paths, or config snippets.
-- **No jargon without definition.** If a technical term is unavoidable, define it in one plain sentence before using it — once, not repeatedly.
-- **Use analogies.** Prefer everyday comparisons over accurate-but-opaque terminology.
+- **No jargon without definition.** If a technical term is unavoidable, define it once in one plain sentence.
+- **Use analogies.** Prefer everyday comparisons over opaque terminology.
 - **Describe outcomes, not mechanisms.** Say what will happen, not how it works internally.
-- **Step by step, confirm before going deeper.** After each explanation, check that the user followed before adding more detail.
-- **One idea per message.** Don't pile on. Short, clear, then wait.
+- **Step by step.** Confirm understanding before going deeper.
+- **One idea per message.** Keep it short, clear, then wait.
 - **No assumptions about prior knowledge.** Treat every concept as new unless the user signals otherwise.
 
-## What counts as "technical"
+## What counts as technical
 
-Anything requiring a developer context to understand:
-- Code of any language
-- Terminal/shell commands
-- File system paths
+- Code in any language
+- Terminal or shell commands
+- File-system paths
 - API calls, HTTP methods, environment variables
 - Package names, version numbers, config keys
 - Architecture diagrams with component names as labels
 
 ## Deactivation
 
-The user can return to normal mode by saying "back to normal", "technical mode", or similar. When deactivating, confirm once: "Switching back to technical mode."
+Return to normal communication when the user says "back to normal", "technical mode", or similar. Confirm the switch once.
 
 ## Tone
 
-Friendly, patient, direct. Not condescending. Think: explaining to a smart friend who just doesn't code.
+Friendly, patient, direct, and never condescending.

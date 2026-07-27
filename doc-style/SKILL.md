@@ -16,7 +16,7 @@ type: the actual audience or use case
 
 ## Tone
 
-Maintain my original voice.
+Maintain the author's original voice.
 
 Drop marketing fluff. Use facts, brevity, and direct language.
 

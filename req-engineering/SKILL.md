@@ -5,41 +5,41 @@ description: Requirements engineering discipline — acceptance-criteria-first w
 
 # Requirements Engineering
 
-A discipline for capturing and verifying what "done" actually means before writing code.
+Capture and verify what "done" means before writing code.
 
-## The acceptance-harness method
+## Acceptance harness
 
 1. Take the user's request.
-2. Draft an itemized, explicit acceptance-criteria list — exactly what must be true.
-3. For important or difficult tasks, confirm that list with the user BEFORE implementing.
-4. Implement; run automated checks (compilation, tests, build).
-5. Hand the user a plain test checklist: one bullet per behavior — what to do, what must happen.
-6. The task is "done" only when the user verifies it against the confirmed criteria. Never claim functional verification yourself.
+2. Draft an explicit acceptance-criteria list stating exactly what must be true.
+3. For important or difficult tasks, confirm that list with the user before implementing.
+4. Implement and run the appropriate automated checks.
+5. Give the user a plain test checklist: one bullet per behavior, stating what to do and what must happen.
+6. Treat the task as done only after the user verifies it against the confirmed criteria.
 
-## Verification-trust hierarchy (ascending)
+## Verification trust
+
+Use this ascending hierarchy:
 
 1. Agent claim — untrusted by default.
-2. Automated test/CI passing — necessary, never sufficient.
-3. A real end-to-end run in a production-like environment.
-4. The user's own manual acceptance — the only rung that closes "done."
+2. Automated test or CI — necessary, never sufficient.
+3. Real end-to-end run in a production-like environment.
+4. User manual acceptance — closes "done."
 
-Any "done" claim should name which rung it's actually standing on.
+Name the actual verification level behind any completion claim.
 
-## Importance vs. difficulty
+## Importance versus difficulty
 
-Keep these as two independent axes when tracking tasks:
+Track two independent axes:
 
-- **Importance** (why it matters): Foundational / Important / Nice-to-have.
-- **Difficulty** (how to route it): Easy / Medium / Hard — used for worker/model selection, not urgency.
+- **Importance:** Foundational / Important / Nice-to-have.
+- **Difficulty:** Easy / Medium / Hard.
 
-Don't let a Hard task borrow Foundational urgency, or a Foundational task get treated as low-effort because it happens to be Easy.
+Use importance to express value and difficulty to route implementation. Do not confuse one for the other.
 
-## Stating a vision/PRD
+## Vision and requirements documents
 
-When writing or updating a vision or product requirements document:
-
-- **Thesis**: state what the thing IS in one line — the identity that survives changes in implementation or provider.
-- **Purpose**: state what it's FOR — the problem it solves and for whom.
-- **Value**: numbered value props, each independently worth building — not one blob of "makes things better."
-- **Non-goals**: list what's explicitly deferred or out of scope for the current release, next to the goals, not left implicit.
-- Keep the vision doc and the current-state/implementation doc separate and cross-referencing — the vision doesn't claim what's built, the state doc doesn't restate why. Drift between the two is a rot signal.
+- **Thesis:** State what the product is in one line.
+- **Purpose:** State what problem it solves and for whom.
+- **Value:** List independently useful value propositions.
+- **Non-goals:** Put deferred and unsupported behavior next to the goals.
+- Keep the stable vision separate from current implementation status, with clear cross-references.

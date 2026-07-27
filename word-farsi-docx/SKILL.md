@@ -3,7 +3,7 @@ name: word-farsi-docx
 description: Converting Persian (Farsi) reports to a clean .docx (B Nazanin) without breaking formatting.
 ---
 
-This is the exact approach I used for the *good* Persian Word outputs (the clean B Nazanin template ones).
+A proven approach for producing clean Persian Word output from a B Nazanin template.
 
 ---
 
@@ -29,7 +29,7 @@ This is the exact approach I used for the *good* Persian Word outputs (the clean
 ## Method (the important part)
 
 ### 1) Start from a known-good template `.docx`
-Instead of styling from scratch, I used a “golden” template file that already looked right:
+Instead of styling from scratch, start from a “golden” template file that already looks right:
 
 - correct margins
 - correct spacing rules
@@ -39,19 +39,19 @@ Instead of styling from scratch, I used a “golden” template file that alread
 **Why:** Word styling is fragile; starting from a template reduces surprises.
 
 ### 2) Clear the document body but keep section properties (`sectPr`)
-When replacing content, I remove everything in the body **except** the section properties (`w:sectPr`).
+When replacing content, remove everything in the body **except** the section properties (`w:sectPr`).
 
 **Why:** `sectPr` stores page size, margins, and layout. If you delete it, Word changes your whole page geometry.
 
 ### 3) Force RTL at the paragraph level
-For every paragraph I:
+For every paragraph:
 - set alignment **RIGHT**
 - explicitly add the RTL flag: `w:bidi = 1`
 
 **Why:** Persian can *look* right but behave wrong (punctuation, numbering, mixed Latin tokens) unless RTL is explicitly enabled.
 
 ### 4) Force B Nazanin at the run level (not just paragraph style)
-For every run, I set fonts in `w:rFonts` for:
+For every run, set fonts in `w:rFonts` for:
 
 - `w:ascii`
 - `w:hAnsi`
@@ -63,7 +63,7 @@ For every run, I set fonts in `w:rFonts` for:
 **Why:** Mixed-script runs (English inside Persian) often silently fall back to other fonts unless **all** channels are set.
 
 ### 5) Use Word-native structures (do not “paste PDF”)
-I rebuilt content as:
+Rebuild content as:
 - **Headings** (Heading 1/2… or custom)
 - **Normal paragraphs**
 - **Bullets / numbered lists**
@@ -73,7 +73,7 @@ I rebuilt content as:
 **Why:** If you embed PDF pages or copy rendered text, Word sees it as an image/shape and you lose editability + consistent layout.
 
 ### 6) Control spacing explicitly (avoid “random Word spacing”)
-For key paragraphs/headings I set spacing in `w:spacing`:
+For key paragraphs/headings, set spacing in `w:spacing`:
 - `after = 120` (example; adjust as needed)
 
 **Why:** Persian text can balloon spacing because Word decides “helpful” defaults.
@@ -111,7 +111,7 @@ If your environment/client has trouble downloading Persian filenames, duplicate 
 
 ---
 
-## Quality checklist (what I validated)
+## Quality checklist
 
 - Persian punctuation looks correct (، ؛ ؟) and stays RTL
 - English terms are inside parentheses and don’t break the sentence flow
