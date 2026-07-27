@@ -3,9 +3,15 @@ name: skills
 type: reusable AI-agent workflows for developers using SKILL.md-compatible assistants
 ---
 
-# Skills
+<div align="center">
+
+<img src="elpis-skills.png" alt="Skills" width="650">
+
+<br>
 
 **Do not re-explain the same working method to an agent every session.**
+
+</div>
 
 This repository contains reusable `SKILL.md` workflows for coding assistants such as Codex, Claude Code, and other skill-compatible agents. Each skill is a small, versioned procedure with its own trigger description, constraints, and execution rules.
 
