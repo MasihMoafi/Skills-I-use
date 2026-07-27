@@ -1,5 +1,5 @@
 ---
-name: clean-up
+name: clean-system
 description: Procedural guide for auditing and safely reclaiming disk space on the system. Covers package manager caches (uv, pip, npm, conda, pnpm), Docker caches/images, transient agent files (.ES), and temp/backup files. Never deletes without explicit user confirmation.
 metadata:
   short-description: Audit and safely clean up disk space

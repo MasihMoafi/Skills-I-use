@@ -41,15 +41,21 @@ A skill turns that repeated instruction into a repository-owned procedure that c
 
 ## Available skills
 
-- **[`clean-up`](clean-up/SKILL.md)** — consent-gated disk-space audit and cleanup workflow.
+- **[`artifact`](artifact/SKILL.md)** — handling rules for PDFs, HTML reports, slides, LaTeX/XeLaTeX documents, and formula rendering.
+- **[`chat-cleaner`](chat-cleaner/SKILL.md)** — map, name, and triage accumulated agent chat history into a clean inventory.
+- **[`clean-system`](clean-system/SKILL.md)** — consent-gated disk-space audit and cleanup workflow.
 - **[`doc-style`](doc-style/SKILL.md)** — evidence-first README, specification, and launch-writing standard.
+- **[`dumb-down`](dumb-down/SKILL.md)** — switch the agent to plain, non-technical explanation: no code, no jargon, no commands.
 - **[`experiment-workflow`](experiment-workflow/SKILL.md)** — variable-isolated experiment workflow with explicit hypotheses and stress tests.
 - **[`first-principles`](first-principles/SKILL.md)** — engineering simplification workflow: question → delete → simplify → accelerate → automate.
 - **[`gitlab`](gitlab/SKILL.md)** — branch-protection and merge-request workflow guidance for GitLab repositories.
 - **[`harness-eng`](harness-eng/SKILL.md)** — agent-project harness design: rules, progress state, feature tracking, and evaluator contracts.
 - **[`pdf`](pdf/SKILL.md)** — visual-first workflow for reading, creating, and validating PDFs.
 - **[`product-design`](product-design/SKILL.md)** — product architecture, user-flow design, stack selection, and frontend-first execution planning.
+- **[`req-engineering`](req-engineering/SKILL.md)** — acceptance-criteria-first requirements discipline and verification trust hierarchy.
 - **[`training-nn`](training-nn/SKILL.md)** — neural-network training recipe and common failure-mode checklist.
+- **[`vision`](vision/SKILL.md)** — project orientation: locate or create the vision file that tells an agent what a project is before it edits anything.
+- **[`word-farsi-docx`](word-farsi-docx/SKILL.md)** — producing clean Word-native Persian (B Nazanin) `.docx` output without breaking formatting.
 
 Personal machine configuration and third-party-authored skills are intentionally excluded from the public repository.
 

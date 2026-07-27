@@ -1,6 +1,8 @@
-# Personal — machine-specific config and personal workflows, not meant for the public repo
+# Personal — machine-specific config and personal notes, not meant for the public repo
 /dev/
-/word-farsi-docx/
+/Learner/
+
+# Not a skill yet — reference notes with no SKILL.md, so nothing can install them
 /web-dev/
 
 # Third-party — authored by OpenAI (openai/skills), Apache-2.0, not mine to redistribute under this repo's MIT license
